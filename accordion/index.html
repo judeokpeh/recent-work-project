@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Ga Maamli", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+
+        }
+        body{
+            background: linear-gradient(90deg, #131325, #025233);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .accordion-container{
+            background-color: rgba(0,0,0, 0.8);
+            color: white;
+            padding: 30px;
+            width: 500px;
+            min-height: 600px;
+        }
+        .accordion{
+            position: relative;
+            margin-bottom: 8px;
+            background-color: gray;
+            color: #000000;
+            padding: 10px;
+        }
+        button{
+            outline: none;
+            background-color: transparent;
+            border: 0;
+            padding: 8px;
+            font-size: 22px;
+
+        }
+        img{
+            position: absolute;
+            right: 6px;
+            cursor: pointer;
+            transform: rotate(0);
+            transition: transform 0.5s;
+           
+        }
+        .active{
+            
+                transform: rotate(-45deg);
+                
+        }
+        .answer{
+            border: 1px solid rgb(8, 6, 5);
+           transition-delay: 1s;
+            color: white;
+            padding: 8px;
+            display: none;
+        }
+        h3{
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        @keyframes bounce {
+            10%, 20%, 40%, 50%,100%{
+                transform: translateY(5px);
+            }
+            60%, 80%{
+                transform: translateY(-5px);
+            }
+        }
+        .mobile-menu{
+            background-color: white;
+            padding: 20px;
+            position: absolute;
+            right: 20px;
+            top: 48px;
+            width: 150px;
+            display: none;
+            z-index: 99;
+          
+
+        }
+        li{
+            list-style: none;
+            position: relative;
+        }
+        /* li::after{
+            position: absolute;
+            content: "";
+            width: 100%;
+            background-color: gray;
+            height: 1px;
+            left: 0;
+        } */
+        li:nth-child(5){
+            background-color: #025233;
+            text-align: center;
+            padding: 5px;
+            
+        }
+        
+        li:nth-child(5) a{
+            color: white;
+           
+            
+        }
+
+        a{
+            text-decoration: none;
+            color: #096b32;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="/menu.svg" alt="" style="position: absolute; top:24px; right: 24px;" class="menu" >
+    <!-- mobile menu -->
+     <div class="mobile-menu">
+        <div class="menu-item">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">Register</a></li>
+                <li><a href="">Sign In</a></li>
+            </ul>
+        </div>
+        <!-- <span style="position: absolute; top: 0; color: gray; right: 20px; cursor: pointer;">X</span> -->
+     </div>
+
+     <!-- --------------------------------- -->
+    <div class="accordion-container">
+        <h3>Fequently Asked Questions FAQS</h3>
+        <div class="accordion">
+            <button>What is the meaning of DDL?</button>
+            <img src="arrow-down.svg" alt="">
+            <p class="answer">DDL Stands for Digital Dreams Limited</p>
+        </div>
+        <div class="accordion">
+            <button>What is the full meaning of CSS?</button>
+            <img src="arrow-down.svg" alt="">
+            <p class="answer">CSS stands for Cascading Stylesheet</p>
+        </div>
+        <div class="accordion">
+            <button>Who is the Best President Nigeria ever had?</button>
+            <img src="arrow-down.svg" alt="">
+            <p class="answer">Momammed Yara Adua</p>
+        </div>
+        <div class="accordion">
+            <button>When did Nigeria Gain Indepence?</button>
+            <img src="arrow-down.svg" alt="">
+            <p class="answer">Nigeria gained Indepence in the year 1st October 1960</p>
+        </div>
+    </div>
+
+
+    <script>
+     
+        const icons = document.querySelectorAll('.accordion img');
+       
+        icons.forEach(function(icon, i){
+            console.log(i)
+            console.log(icon)
+            icon.addEventListener('click', (e)=>{
+                e.target.classList.toggle("active");
+                let answer = e.target.nextElementSibling;
+             
+               // answer.style.display ==='block' ? answer.style.display ="none" : answer.style.display ="block";
+                if(answer.style.display ==='block'){
+                    answer.style.display = "none";
+                }else{
+                    answer.style.display = "block";
+                }
+            })
+        })
+    const menuIcon = document.querySelector('.menu');
+    let menuItems = document.querySelector('.mobile-menu');
+    menuIcon.addEventListener('click', function(){
+      const accordion = document.querySelector('.accordion');
+        // console.log(menuItems)
+        // menuItems ==="block" ? menuItems.style.display = "none": menuItems.style.display ="block"
+        if(menuItems.style.display==="none"){
+            
+            menuItems.style.display = 'block'
+        }else{
+            menuItems.style.display= 'none'
+        }
+    })
+
+    // const removeicon = document.querySelector('span');
+    // removeicon.addEventListener('click', ()=>{
+    //     menuItems.classList.toggle('mobile-menu')
+    // })
+    </script>
+</body>
+
+</html>

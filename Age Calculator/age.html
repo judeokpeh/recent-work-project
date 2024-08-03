@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <h3>Age Calculator</h3>
+            <div class="">
+                <label for=""></label>
+                <input type="text" id="year">
+            </div>
+            <button onclick="ageCalc(event)">ChecK Age</button>
+            <div class="result"></div>
+        </form>
+    </div>
+    <script>
+        function ageCalc(event){
+            event.preventDefault();
+
+            let userinput = document.querySelector("#year").value;
+            userinput = Number(userinput);
+
+            let currentdate = new Date();
+            currentyear = currentdate.getFullYear();
+
+            //calculation
+            let result = currentyear - userinput;
+            document.querySelector(".result").innerHTML = result;
+
+        }
+    </script>
+</body>
+</html>

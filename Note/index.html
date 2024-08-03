@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, rgb(0, 0, 0), rgb(48, 4, 168));
+            
+        }
+        .text{
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin-bottom: 10px;
+            background-color: white;
+            border: 2px solid green;
+            outline: none;
+          
+        }
+        .note-container{
+            background-color: white;
+            margin-top: 50px;
+            border-radius: 10px;
+            padding: 20px;
+            width: 600px;
+        }
+        .note-container h3{
+            display: flex;
+            color: red;
+            font-size: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+        .note-container h3 img{
+           width: 40px;
+        }
+        button{
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            border: 0;
+            outline: 0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .delete{
+           
+            position: absolute;
+            bottom: 3px;
+            right: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="note-container">
+        <div class="note-app">
+            <h3>Easily Create Note <img src="images/edit.svg" alt=""></h3>
+            <button>Create Note</button>
+            <div class="note"></div>
+            <!-- <p contenteditable="True" id="text"></p> -->
+        </div>
+    </div>
+    <script>
+        let buttonEl = document.querySelector("button");
+        let noteDiv = document.querySelector(".note")
+        let noteApp = document.querySelector(".note-app");
+        buttonEl.addEventListener('click', (e)=>{
+            let para = document.createElement("textarea");
+            para.classList.add("text");
+            let trash = document.createElement("img");
+            trash.classList.add("delete");
+            trash.src = 'images/trash.svg'
+          
+         
+            noteDiv.appendChild(para).appendChild(trash);
+            saveData()
+
+        })
+        noteApp.addEventListener("click", (e)=>{
+            if(e.target.tagName === 'IMG'){
+                e.target.parentElement.remove();
+           }
+           saveData()
+        })
+        function saveData(){
+            
+            localStorage.setItem("data", noteDiv.innerHTML)
+        }
+        function showData(){
+           
+            noteDiv.innerHTML = localStorage.getItem("data")
+        }
+        showData()
+    </script>
+</body>
+</html>
